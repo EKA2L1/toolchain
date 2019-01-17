@@ -1,0 +1,5 @@
+EXPORTS
+	e32_close_handle @ 1 NONAME
+	e32_get_thread_heap_allocator @ 2 NONAME
+	e32_set_thread_allocator @ 3 NONAME
+	e32_wait_for_any_request @ 4 NONAME

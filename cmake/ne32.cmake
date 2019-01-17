@@ -1,0 +1,44 @@
+cmake_minimum_required(VERSION 3.2)
+
+macro (e32_add_dll source uid deffile)
+    get_target_property(TEMP ${source} LINK_FLAGS)
+    if(TEMP STREQUAL "TEMP-NOTFOUND")
+        SET(TEMP "") # Set to empty string
+    else()
+        SET(TEMP "${TEMP} ") # A space to cleanly separate from existing content
+    endif()
+
+    if (NE32_OS_TARGET STREQUAL "S60V5")
+        message("Compiling ${source} with ARMv6")
+        SET (TEMP "${TEMP} -march=armv6")
+    endif()
+    
+    if (NE32_OS_TARGET STREQUAL "S60V3")
+        message("Compiling ${source} with ARMv5t")
+        SET (TEMP "${TEMP} -march=armv5t")
+    endif()
+
+    # Append our values
+    SET(TEMP "${TEMP} -nostdlib -Wl,--target1-abs,--shared,--default-symver,-Tdata,0x400000,-Ttext,0x8000")
+    set_target_properties(${source} PROPERTIES LINK_FLAGS ${TEMP} )
+
+    message(${TEMP})
+
+    # This was not supposed to include the dlldata.
+    add_custom_target(
+        ${source}.so
+        ALL
+        COMMAND "${NE32_ELF2E32}" --elfinput="${CMAKE_CURRENT_BINARY_DIR}/lib${source}.so" 
+            --uid1=0x10000079 --uid2=0x10 --uid3=${uid} --sid=${uid} 
+            --version=10.0
+            --dlldata
+            --output="${CMAKE_CURRENT_BINARY_DIR}/${source}.dll" 
+            --libpath="${NE32_LIBPATH}"
+            --definput="${deffile}"
+            --defoutput="${CMAKE_CURRENT_BINARY_DIR}/${source}.def"
+            --targettype=DLL
+            --dso="${CMAKE_CURRENT_BINARY_DIR}/lib${source}.a"
+            --linkas="${source}.dll")
+
+    add_dependencies(${source}.so ${source})
+endmacro()

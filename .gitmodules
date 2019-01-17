@@ -1,0 +1,3 @@
+[submodule "tools/elf2e32"]
+	path = tools/elf2e32
+	url = https://github.com/fedor4ever/elf2e32
