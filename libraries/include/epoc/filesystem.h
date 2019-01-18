@@ -1,5 +1,5 @@
-#ifndef __EPOC_FILESYSTEM
-#define __EPOC_FILESYSTEM
+#ifndef __EPOC_FILESYSTEM_H
+#define __EPOC_FILESYSTEM_H
 
 #include <epoc/common.h>
 
@@ -15,7 +15,7 @@ void e32_close_file_session(const handle h);
 */
 handle e32_set_current_thread_file_session(const handle h);
 
-e32file e32_open_file(const ucs2_str path, const int flags, const int mode);
+e32file e32_open_file(const ucs2str path, const int flags, const int mode);
 void e32_close_file(e32file file);
 
 #endif

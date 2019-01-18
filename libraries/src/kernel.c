@@ -1,3 +1,4 @@
+#include <epoc/descriptor.h>
 #include <epoc/kernel.h>
 
 #ifdef __cplusplus
@@ -9,6 +10,14 @@ extern "C" {
 #else
   #error Unsupport Symbian version
 #endif
+
+E32_API void e32_debug_print(const char *msg, const int32 len)
+{
+  ptrc_descriptor wrapstr;
+  e32_create_descriptor_const(&wrapstr, msg, len);
+
+  e32_debug_print_des((descriptor*)&wrapstr, 0);
+}
 
 #ifdef __cplusplus
 }

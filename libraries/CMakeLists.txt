@@ -12,6 +12,7 @@ project(libraries C)
 add_library(e32common
 	include/epoc/common.h
 	include/epoc/descriptor.h
+	src/common.c
 	src/descriptor.c)
 
 target_include_directories(e32common PUBLIC include)
