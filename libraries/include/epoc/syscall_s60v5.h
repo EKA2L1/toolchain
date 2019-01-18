@@ -37,7 +37,7 @@ SYSCALL_INTERFACE(void*, e32_get_active_scheduler);
 
 /*! \brief Set current thread's active scheduler
 */
-SYSCALL_INTERFACE(void, e32_set_active_scheduler);
+SYSCALL_INTERFACE(void, e32_set_active_scheduler, void* new_scheduler);
 
 /*! \brief Get current thread's trap handler
 */

@@ -1,10 +1,14 @@
 EXPORTS
 	e32_close_handle @ 1 NONAME
 	e32_get_thread_heap_allocator @ 2 NONAME
-	e32_set_thread_allocator @ 3 NONAME
+	e32_set_thread_heap_allocator @ 3 NONAME
 	e32_wait_for_any_request @ 4 NONAME
 	e32_debug_print_des @ 5 NONAME
 	e32_debug_print @ 6 NONAME
 	e32_get_chunk_base @ 7 NONAME
 	e32_get_chunk_max_size @ 8 NONAME
 	e32_imb_range @ 9 NONAME
+	e32_get_active_scheduler @ 10 NONAME
+	e32_get_thread_trap_handler @ 11 NONAME
+	e32_set_active_scheduler @ 12 NONAME
+	e32_set_thread_trap_handler @ 13 NONAME
