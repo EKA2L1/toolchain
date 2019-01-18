@@ -9,8 +9,8 @@ macro (e32_add_dll source uid deffile)
     endif()
 
     if (NE32_OS_TARGET STREQUAL "S60V5")
-        message("Compiling ${source} with ARMv6")
-        SET (TEMP "${TEMP} -march=armv6")
+        message("Compiling ${source} with ARMv5t")
+        SET (TEMP "${TEMP} -march=armv5t")
     endif()
     
     if (NE32_OS_TARGET STREQUAL "S60V3")
