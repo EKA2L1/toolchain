@@ -19,7 +19,7 @@ macro (e32_add_dll source uid deffile)
     endif()
 
     # Append our values
-    SET(TEMP "${TEMP} -nostdlib -Wl,--target1-abs,--shared,--default-symver,-Tdata,0x400000,-Ttext,0x8000")
+    SET(TEMP "${TEMP} -nostdlib -Wl,--target1-abs,--shared,--default-symver,-Tdata,0x400000,-Ttext,0x8000,--entry,_E32Dll,-u,_E32Dll,-Le32dll_stub")
     set_target_properties(${source} PROPERTIES LINK_FLAGS ${TEMP} )
 
     message(${TEMP})
