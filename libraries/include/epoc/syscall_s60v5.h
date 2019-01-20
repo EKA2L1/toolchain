@@ -29,7 +29,25 @@ SYSCALL_INTERFACE(void*, e32_get_thread_heap_allocator);
  *
  * \returns The old heap's allocator
 */
-SYSCALL_INTERFACE(void*, e32_set_thread_allocator, const void *new_allocator);
+SYSCALL_INTERFACE(void*, e32_set_thread_heap_allocator, const void *new_allocator);
+
+/*! \brief Get current thread's active scheduler
+*/
+SYSCALL_INTERFACE(void*, e32_get_active_scheduler);
+
+/*! \brief Set current thread's active scheduler
+*/
+SYSCALL_INTERFACE(void, e32_set_active_scheduler, void* new_scheduler);
+
+/*! \brief Get current thread's trap handler
+*/
+SYSCALL_INTERFACE(void*, e32_get_thread_trap_handler);
+
+/*! \brief Set current thread's trap handler
+ *
+ * \returns New trap handler
+*/
+SYSCALL_INTERFACE(void*, e32_set_thread_trap_handler, const void *new_trap);
 
 /*! \brief Close a valid handle.
  *
