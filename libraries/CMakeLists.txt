@@ -20,7 +20,11 @@ target_include_directories(e32common PUBLIC include)
 add_library(e32dll_stub
 	src/entry.c)
 
+add_library(e32exe_stub
+	src/exe.c)
+
 target_link_libraries(e32dll_stub PUBLIC e32common)
+target_link_libraries(e32exe_stub PUBLIC e32common)
 
 # Kern
 add_library(e32kern
