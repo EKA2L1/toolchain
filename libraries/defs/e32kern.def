@@ -14,3 +14,10 @@ EXPORTS
     e32_set_thread_trap_handler @ 13 NONAME
     e32_session_create_des @ 14 NONAME
     e32_session_create @ 15 NONAME
+    e32_session_send @ 16 NONAME
+    e32_session_send_sync @ 17 NONAME
+    e32_pin_ipc_arg @ 18 NONAME
+    e32_set_ipc_arg_handle @ 19 NONAME
+    e32_set_ipc_arg @ 20 NONAME
+    e32_unpin_ipc_arg @ 21 NONAME
+    e32_set_ipc_arg_string @ 22 NONAME
