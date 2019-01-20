@@ -19,6 +19,11 @@ E32_API void e32_debug_print(const char *msg, const int32 len)
   e32_debug_print_des((descriptor*)&wrapstr, 0);
 }
 
+E32_API int32 e32_dll_entry_point() 
+{
+  return 0;
+}
+
 #ifdef __cplusplus
 }
 #endif
