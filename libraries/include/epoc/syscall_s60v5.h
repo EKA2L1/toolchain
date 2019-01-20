@@ -92,9 +92,38 @@ SYSCALL_INTERFACE(void, e32_imb_range, const void *start, const int32 size);
  * \param sec_policy Pointer to a e32_security_policy. Use E32_NULL to ignore.
  * \param type  Type of this session. See E32_IPC_SESSION* macros.
  * 
- * \returns E32_ERR_NONE for success.
+ * \returns < 0 is error code. Else it's the session handle.
 */
 SYSCALL_INTERFACE(int32, e32_session_create_des, descriptor *server_name, const int32 async_msg_slot_count,
     const void *sec_policy, const int32 type);
+
+/*! \brief Send a message using current thread's message slot.
+ *
+ * Because each thread only has one message slot, this means that message that send using this
+ * method will be put on queue until current thread's message slot is free again.
+ * 
+ * \param session_handle Handle to the session.
+ * \param opcode The opcode to sends to the server.
+ * \param ipc_args The args of to send.
+ * \param req_sts Status that will be notified when the message is completed from server side.
+ * 
+ * \returns E32_ERR_NONE if sending success.
+*/
+SYSCALL_INTERFACE(int32, e32_session_send_sync, handle sesion_handle, const int32 opcode, 
+    const void *ipc_args, const void *req_sts);
+
+/*! \brief Send a message async using session's async message slots.
+ *
+ * Total async message slots are declared when create the session.
+ * 
+ * \param session_handle Handle to the session.
+ * \param opcode The opcode to sends to the server.
+ * \param ipc_args The args of to send.
+ * \param req_sts Status that will be notified when the message is completed from server side.
+ * 
+ * \returns E32_ERR_NONE if sending success.
+*/
+SYSCALL_INTERFACE(int32, e32_session_send, handle sesion_handle, const int32 opcode, 
+    const void *ipc_args, const void *req_sts);
 
 #endif

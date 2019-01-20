@@ -11,6 +11,10 @@ SYSCALL_V1(0x00800009, void*, e32_set_thread_trap_handler, const void *new_trap)
 SYSCALL_V1(0x00000001, void*, e32_get_chunk_base, const handle chunk_handle);
 SYSCALL_V1(0x0000000C, void, e32_imb_range, const void *start, const int32 size);
 SYSCALL_V1(0x00000003, int32, e32_get_chunk_max_size, const handle chunk_handle);
+SYSCALL_V1(0x00000025, int32, e32_session_send, handle sesion_handle, const int32 opcode, 
+    const void *ipc_args, const void *req_sts);
+SYSCALL_V1(0x0000004D, int32, e32_session_send_sync, handle sesion_handle, const int32 opcode, 
+    const void *ipc_args, const void *req_sts);
 SYSCALL_V1(0x00000056, void, e32_debug_print_des, descriptor *des, const int mode);
 SYSCALL_V1(0x0000006A, uint32, e32_close_handle, const handle target_handle);
 SYSCALL_V1(0x0000007F, int32, e32_session_create_des, descriptor *server_name, const int32 async_msg_slot_count,
