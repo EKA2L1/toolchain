@@ -85,4 +85,16 @@ SYSCALL_INTERFACE(int32, e32_get_chunk_max_size, const handle chunk_handle);
 */
 SYSCALL_INTERFACE(void, e32_imb_range, const void *start, const int32 size);
 
+/*! \brief Create a new session to a server.
+ *
+ * \param server_name An 8-bit descriptor contains the name of the server we want to connect to.
+ * \param async_msg_slot_count Total async messages slot. Max is 255, -1 for sync slot using thread's message slot.
+ * \param sec_policy Pointer to a e32_security_policy. Use E32_NULL to ignore.
+ * \param type  Type of this session. See E32_IPC_SESSION* macros.
+ * 
+ * \returns E32_ERR_NONE for success.
+*/
+SYSCALL_INTERFACE(int32, e32_session_create_des, descriptor *server_name, const int32 async_msg_slot_count,
+    const void *sec_policy, const int32 type);
+
 #endif

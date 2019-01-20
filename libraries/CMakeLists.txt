@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-set (NE32_ROOT "${CMAKE_BINARY_DIR}/.." CACHE STRING "")
+set (NE32_ROOT "${CMAKE_INSTALL_PREFIX}/.." CACHE STRING "")
 set (ENV{NE32_ROOT} ${NE32_ROOT})
 
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/../cmake/ne32.s60v5.toolchain.cmake)
@@ -16,6 +16,11 @@ add_library(e32common
 	src/descriptor.c)
 
 target_include_directories(e32common PUBLIC include)
+
+add_library(e32dll_stub
+	src/entry.c)
+
+target_link_libraries(e32dll_stub PUBLIC e32common)
 
 # Kern
 add_library(e32kern
