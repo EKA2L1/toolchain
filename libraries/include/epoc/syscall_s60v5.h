@@ -126,4 +126,15 @@ SYSCALL_INTERFACE(int32, e32_session_send_sync, handle sesion_handle, const int3
 SYSCALL_INTERFACE(int32, e32_session_send, handle sesion_handle, const int32 opcode, 
     const void *ipc_args, const void *req_sts);
 
+/*! \brief Create a new chunk.
+ *
+ * \param owner_type The owner of this chunk, either the current thread or current process.
+ * \param name Name of this chunk. Won't work with local chunk unless you set E32_CHUNK_ATTRIB_FORCE_NAMED.
+ * \param chunk_create_info Pointer to e32_chunk_create_info struct.
+ * 
+ * \returns <0 is error code, else a handle to the chunk.
+*/
+SYSCALL_INTERFACE(int32, e32_chunk_create_des, const int owner_type, descriptor *name,
+    const void *chunk_create_info);
+
 #endif

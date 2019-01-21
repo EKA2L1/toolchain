@@ -103,6 +103,87 @@ E32_API int32 e32_set_ipc_arg_handle(e32_ipc_args *args, const int32 index, cons
 E32_API int32 e32_set_ipc_arg_string(e32_ipc_args *args, const int32 index, void *descriptor,
     bool modifiable, bool ucs2);
 
+/*! \brief Flag for a normal chunk.
+ *
+ * A normal chunk don't let you access to things like bottom or top.
+ * When you want to expand the memory chunk, by committing more memory to it, call e32_chunk_commit(new_size).
+*/
+#define E32_CHUNK_ATTRIB_NORMAL 0
+
+/*! \brief Flag for a double end chunk.
+ *
+ * Double end chunk let you choose which part of the chunk will be the committed one.
+ *
+ * For example, your chunk has max size of 0x200 000, and you can choose 0x1000 as the begin (bottom), and 0x30 000 as the end (top)
+ * of the committed region. 
+*/
+#define E32_CHUNK_ATTRIB_DOUBLE_ENDED 1
+
+/*! \brief Flag for disconnected chunk.
+ *
+ * Disconnected chunk are like double ended, but it allows multiple commit region.
+ * It's like a bunch of double ended chunk in a big big chunk.
+*/
+#define E32_CHUNK_ATTRIB_DISCONNECTED 2
+
+/*! \brief Flag for making a chunk readable and writeable
+*/
+#define E32_CHUNK_ATTRIB_READ_WRITE 0
+
+/*! \brief Flag for making a chunk memory executable.
+ *
+ * This flag won't work if the chunk is global, for obivious region.
+*/
+#define E32_CHUNK_ATTRIB_EXECUTABLE 0x20
+
+/*! \brief Flag for making a chunk read-only.
+*/
+#define E32_CHUNK_ATTRIB_READ_ONLY 0x100
+
+/*! \brief Unknown usage 
+*/
+#define E32_CHUNK_ATTRIB_CACHE 3
+
+/*! \brief This flag indicates that the chunk memory is only valid in current process.
+*/
+#define E32_CHUNK_ATTRIB_LOCAL 0
+
+/*! \brief This flag indicates that the chunk memory can also be seen by other process.
+*/
+#define E32_CHUNK_ATTRIB_GLOBAL 0x10
+
+/*! \brief This flag forced the local chunk to be named.
+ *
+ * Usually, only global chunk can have name. But making exception for Heap chunk,
+ * Symbian adds this.
+*/
+#define E32_CHUNK_ATTRIB_LOCAL_NAMED 0x80
+
+/*! \brief Flag specified the chunk memory to be paged.
+ *
+ * Available with Symbian 9.3 onwards, most likely added because of ARMv6.
+*/
+#define E32_CHUNK_ATTRIB_PAGED 0x80000000
+
+/*! \brief Flag specified the chunk memory to be unpaged.
+ *
+ * Available with Symbian 9.3 onwards, most likely added because of ARMv6.
+ * Please don't use this, only when you need to.
+*/
+#define E32_CHUNK_ATTRIB_UNPAGED 0x40000000
+
+/*! \brief Create info that passed to e32_create_chunk(_des)
+*/
+typedef struct e32_chunk_create_info
+{
+    uint32 attrib;          ///< Attribute of the chunk
+    bool   force_fixed;     ///< Force name to be fixed
+    int    initial_bottom;  ///< The initial bottom of the committed region
+    int    initial_top;     ///< The initial top of the committed region
+    int    max_size;        ///< Max size that this chunk can grow/commit
+    uint8  clear_byte;      ///< Byte to clear commit region. It's like 0xCC are used to clear committed region on Windows
+} e32_chunk_create_info;
+
 #ifdef __S60_50__
     #include <epoc/syscall_s60v5.h>
 #else
@@ -125,6 +206,17 @@ E32_API void e32_debug_print(const char *msg, const int32 len);
 */
 E32_API int32 e32_session_create(const char *server_name, const int32 async_msg_slot_count,
     const e32_security_policy *sec_policy, const int32 type);
+
+/*! \brief Create a new chunk.
+ *
+ * \param chunk_name Name of the chunk.
+ * \param owner_type The owner of this chunk, either E32_HANDLE_OWNER_THREAD or E32_HANDLE_OWNER_PROCESS.
+ * \param info Chunk creation info.
+ * 
+ * \returns < 0 is error code, else handle to the chunk.
+*/
+E32_API int32 e32_chunk_create(const char *chunk_name, const int32 owner_type,
+    const e32_chunk_create_info *info);
 
 #ifdef __cplusplus
 }

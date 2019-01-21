@@ -29,6 +29,15 @@ E32_API int32 e32_session_create(const char *server_name, const int32 async_msg_
   return e32_session_create_des((descriptor*)(&wrapstr), async_msg_slot_count, (void*)(sec_policy), type);
 }
 
+E32_API int32 e32_chunk_create(const char *chunk_name, const int32 owner_type,
+    const e32_chunk_create_info *info)
+{
+  ptrc_descriptor wrapstr;
+  e32_create_descriptor_const(&wrapstr, chunk_name, -1);
+
+  return e32_chunk_create_des(owner_type, (descriptor*)(&wrapstr), (const void*)info);   
+}
+
 E32_API int32 e32_pin_ipc_arg(e32_ipc_args *args, const int32 index)
 {
   if (index < 0 || index >= 4) 
@@ -108,7 +117,7 @@ E32_API int32 e32_set_ipc_arg_string(e32_ipc_args *args, const int32 index, void
   return E32_ERR_NONE;
 }
 
-E32_API int32 e32_dll_entry_point() 
+E32_API int32 e32_dll_main() 
 {
   return 0;
 }

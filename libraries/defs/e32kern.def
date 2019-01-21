@@ -21,3 +21,5 @@ EXPORTS
     e32_set_ipc_arg @ 20 NONAME
     e32_unpin_ipc_arg @ 21 NONAME
     e32_set_ipc_arg_string @ 22 NONAME
+    e32_chunk_create_des @ 23 NONAME
+    e32_chunk_create @ 24 NONAME
