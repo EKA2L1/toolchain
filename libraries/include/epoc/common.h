@@ -19,8 +19,8 @@ typedef int bool;
 
 #define E32_NULL 0
 
-#define HANDLE_OWNER_THREAD 0
-#define HANDLE_OWNER_PROCESS 1
+#define E32_HANDLE_OWNER_THREAD 0
+#define E32_HANDLE_OWNER_PROCESS 1
 
 #ifdef __GNUC__
 #define E32_API __attribute__ ((visibility ("default")))
@@ -28,5 +28,30 @@ typedef int bool;
 
 int32 e32_get_str16_length(const ucs2str *str);
 int32 e32_get_str_length(const char *str);
+
+typedef void(*e32_thread_func)(void *data);
+
+typedef struct e32_thread_create_info 
+{
+    handle thread_handle;
+    int thread_type;
+    e32_thread_func func;
+    void *data;
+    uint32 *supervisor_stack;
+    uint32 *supervisor_stack_size;
+    uint32 *user_stack;
+    uint32 *user_stack_size;
+    int     priority;
+    
+    uint32  name_len;
+    uint8  *name;
+
+    int size;           ///< Size of the struct
+
+    uint32  allocator;
+    int     heap_min;
+    int     heap_max;
+    int     padding;
+} e32_thread_create_info;
 
 #endif
