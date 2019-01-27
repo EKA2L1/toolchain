@@ -224,6 +224,13 @@ typedef struct e32_chunk_create_info
 */
 #define E32_CHUNK_ADJUST_TYPE_UNLOCK 6
 
+typedef struct e32_arm_thread_context {
+    uint32 r[16];
+    uint32 cpsr;
+
+    uint32 dacr;
+} e32_arm_thread_context;
+
 #ifdef __S60_50__
     #include <epoc/syscall_s60v5.h>
 #else
@@ -257,6 +264,16 @@ E32_API int32 e32_session_create(const char *server_name, const int32 async_msg_
 */
 E32_API int32 e32_chunk_create(const char *chunk_name, const int32 owner_type,
     const e32_chunk_create_info *info);
+
+/*! \brief Get ARM CPU context of a thread.
+ *
+ * This is based on an undocumented system call found on Symbian's source code.
+ * Intergrated with debugger client like TRK and CODA.
+ * 
+ * \param thread_handle Handle of the thread to get context from.
+ * \param context       Pointer to arm thread context.
+*/
+E32_API void e32_get_arm_thread_context(const handle thread_handle, e32_arm_thread_context *context);
 
 #ifdef __cplusplus
 }

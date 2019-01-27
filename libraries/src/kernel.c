@@ -35,7 +35,15 @@ E32_API int32 e32_chunk_create(const char *chunk_name, const int32 owner_type,
   ptrc_descriptor wrapstr;
   e32_create_descriptor_const(&wrapstr, chunk_name, -1);
 
-  return e32_chunk_create_des(owner_type, (descriptor*)(&wrapstr), (const void*)info);   
+  return e32_chunk_create_des(owner_type, (descriptor*)(&wrapstr), (const void*)info);
+}
+
+E32_API void e32_get_arm_thread_context(const handle thread_handle, e32_arm_thread_context *context) 
+{
+  ptr_descriptor wrapstr;
+  e32_create_descriptor(&wrapstr, (const char*)context, 0, sizeof(e32_arm_thread_context));
+
+  return e32_get_thread_context_des(thread_handle, (descriptor*)(&wrapstr));
 }
 
 E32_API int32 e32_pin_ipc_arg(e32_ipc_args *args, const int32 index)

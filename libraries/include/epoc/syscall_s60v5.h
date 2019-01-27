@@ -153,4 +153,17 @@ SYSCALL_INTERFACE(int32, e32_chunk_create_des, const int owner_type, descriptor 
 SYSCALL_INTERFACE(int32, e32_chunk_adjust, handle chunk_handle, const int adjust_type, const int a1,
     const int a2);
 
+/*! \brief Get the context of a thread
+ *
+ * Depends on CPU kind, this system call will returns the corresponding structure 
+ * e32_*_thread_context with * being the system CPU name.
+ * 
+ * This will throw a kern-panic on invalid handle
+ * 
+ * \param thread_handle Handle of thread to get context to
+ * \param context_des   Descriptor to write the context to.
+ * 
+*/
+SYSCALL_INTERFACE(void, e32_get_thread_context_des, const handle thread_handle, descriptor *context_des);
+
 #endif

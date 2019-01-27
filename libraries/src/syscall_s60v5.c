@@ -16,6 +16,7 @@ SYSCALL_V1(0x00000025, int32, e32_session_send, handle sesion_handle, const int3
 SYSCALL_V1(0x0000004D, int32, e32_session_send_sync, handle sesion_handle, const int32 opcode, 
     const void *ipc_args, const void *req_sts);
 SYSCALL_V1(0x00000056, void, e32_debug_print_des, descriptor *des, const int mode);
+SYSCALL_V1(0x0000005E, void, e32_get_thread_context_des, const handle thread_handle, descriptor *context_des);
 SYSCALL_V1(0x0000006A, uint32, e32_close_handle, const handle target_handle);
 SYSCALL_V1(0x0000006B, int32, e32_chunk_create_des, const int owner_type, descriptor *name,
     const void *chunk_create_info);

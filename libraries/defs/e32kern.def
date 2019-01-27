@@ -24,3 +24,5 @@ EXPORTS
     e32_chunk_create_des @ 23 NONAME
     e32_chunk_create @ 24 NONAME
     e32_chunk_adjust @ 25 NONAME
+    e32_get_arm_thread_context @ 26 NONAME
+    e32_get_thread_context_des @ 27 NONAME
