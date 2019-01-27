@@ -137,4 +137,20 @@ SYSCALL_INTERFACE(int32, e32_session_send, handle sesion_handle, const int32 opc
 SYSCALL_INTERFACE(int32, e32_chunk_create_des, const int owner_type, descriptor *name,
     const void *chunk_create_info);
 
+/*! \brief Adjust the chunk.
+ *
+ * Operations include: Commit/decommit, adjust chunk committed size, adjust bottom
+ * and top of chunk's committed region, lock and unlock a region of chunk.
+ * 
+ * \param chunk_handle Handle to the chunk
+ * \param type         The adjustment type. See E32_CHUNK_ADJUST_TYPE*
+ * \param a1           The first argument passed to target adjust operation
+ * \param a2           The second argument passed to target adjust operation.
+ *                     If this is not used, passed 0 instead.
+ * 
+ * \returns E32_ERR_NONE indicates success, else other system-related error codes.
+*/
+SYSCALL_INTERFACE(int32, e32_chunk_adjust, handle chunk_handle, const int adjust_type, const int a1,
+    const int a2);
+
 #endif

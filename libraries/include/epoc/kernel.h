@@ -184,6 +184,46 @@ typedef struct e32_chunk_create_info
     uint8  clear_byte;      ///< Byte to clear commit region. It's like 0xCC are used to clear committed region on Windows
 } e32_chunk_create_info;
 
+/*! \brief Adjust the chunk normally
+ *
+ * Adjust the committed size of the chunk
+*/
+#define E32_CHUNK_ADJUST_TYPE_NORMAL 0
+
+/*! \brief Adjust the bottom and top offset of the committed region
+ *         in the chunk.
+*/
+#define E32_CHUNK_ADJUST_TYPE_DOUBLE_END 1
+
+/*! \brief Commit a region of chunk memory.
+ *
+ * This freely commits a memory region in the chunk.
+*/
+#define E32_CHUNK_ADJUST_TYPE_COMMIT 2
+
+/*! \brief Decommit a range of memory, use for disconnected chunk.
+*/
+#define E32_CHUNK_ADJUST_TYPE_DECOMMIT 3
+
+/*! \brief Work just like adjust type normal, for disconnected chunk.
+*/
+#define E32_CHUNK_ADJUST_TYPE_ALLOCATE 4
+
+/*! \brief Lock access from a memory region in the chunk.
+ *
+ * This disallows any threads from any process to edit the memory region,
+ * even the one who lock the chunk.
+ * 
+ * The one who lock the chunk must unlock the chunk itself.
+*/
+#define E32_CHUNK_ADJUST_TYPE_LOCK 5
+
+/*! \brief Unlock access to a memory region in the chunk.
+ *
+ * Unlock operation must be from the one who lock it.
+*/
+#define E32_CHUNK_ADJUST_TYPE_UNLOCK 6
+
 #ifdef __S60_50__
     #include <epoc/syscall_s60v5.h>
 #else

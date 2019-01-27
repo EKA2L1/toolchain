@@ -23,3 +23,4 @@ EXPORTS
     e32_set_ipc_arg_string @ 22 NONAME
     e32_chunk_create_des @ 23 NONAME
     e32_chunk_create @ 24 NONAME
+    e32_chunk_adjust @ 25 NONAME
