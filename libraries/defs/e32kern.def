@@ -26,4 +26,6 @@ EXPORTS
     e32_chunk_adjust @ 25 NONAME
     e32_get_arm_thread_context @ 26 NONAME
     e32_get_thread_context_des @ 27 NONAME
-    e32_delay @ 28
+    e32_delay @ 28 NONAME
+    e32_get_rom_header_address @ 29 NONAME
+    e32_get_rom_root_directory_address @ 30 NONAME

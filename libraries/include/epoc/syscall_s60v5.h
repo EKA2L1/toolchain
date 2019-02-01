@@ -173,4 +173,12 @@ SYSCALL_INTERFACE(void, e32_get_thread_context_des, const handle thread_handle, 
 */
 SYSCALL_INTERFACE(void, e32_delay, const int microsecs, void *request_status);
 
+/*! \brief Get ROM's header address.
+*/
+SYSCALL_INTERFACE(void*, e32_get_rom_header_address);
+
+/*! \brief Get ROM's root directory address
+*/
+SYSCALL_INTERFACE(void*, e32_get_rom_root_directory_address);
+
 #endif
