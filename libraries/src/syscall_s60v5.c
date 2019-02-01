@@ -13,6 +13,7 @@ SYSCALL_V1(0x0000000C, void, e32_imb_range, const void *start, const int32 size)
 SYSCALL_V1(0x00000003, int32, e32_get_chunk_max_size, const handle chunk_handle);
 SYSCALL_V1(0x00000025, int32, e32_session_send, handle sesion_handle, const int32 opcode, 
     const void *ipc_args, const void *req_sts);
+SYSCALL_V1(0x00000040, void, e32_delay, const int microsecs, void *request_status);
 SYSCALL_V1(0x0000004D, int32, e32_session_send_sync, handle sesion_handle, const int32 opcode, 
     const void *ipc_args, const void *req_sts);
 SYSCALL_V1(0x00000056, void, e32_debug_print_des, descriptor *des, const int mode);

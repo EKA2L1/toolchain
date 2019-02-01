@@ -166,4 +166,11 @@ SYSCALL_INTERFACE(int32, e32_chunk_adjust, handle chunk_handle, const int adjust
 */
 SYSCALL_INTERFACE(void, e32_get_thread_context_des, const handle thread_handle, descriptor *context_des);
 
+/*! \brief Delay the current thread
+ *
+ * \param microsecs The time to delay in microseconds
+ * \param request_status A request status object that will be notified when the thread is waken up.
+*/
+SYSCALL_INTERFACE(void, e32_delay, const int microsecs, void *request_status);
+
 #endif

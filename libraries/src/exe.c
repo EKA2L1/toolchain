@@ -31,6 +31,9 @@ __attribute__((naked)) E32_API _E32Startup()
 {
     // Process entry point
     // R4 = entry reason
+    // 0 = Enter Process - first thread of process, 1 = Enter new thread
+    // 4 = Exception handling
+    //
     // SP points to information block
     asm("tst pc, #0");  // DUMMY INSTRUCTION TO INDICATE EKA2 ENTRY POINT
     asm("cmp r4, #1");
@@ -44,6 +47,10 @@ __attribute__((naked)) E32_API _E32Startup()
     asm("movls r0, r4 ");       // r0 = aNotFirst
     asm("movls r1, sp ");       // r1 -> parameter block
     asm("bls e32_run_thread");  // process or thread init
+
+    // This will never be reached if e32_run_thread is called
+    // e32_run_thread will call e32_thread_kill, so real run thread will not enter here
+    // From this block now on, is the exception handler.
     asm("cmp r4, #4");
 
     asm("bne _xxxx_call_user_invariant" );	// invalid entry reason
