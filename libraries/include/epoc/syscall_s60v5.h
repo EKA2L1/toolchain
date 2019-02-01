@@ -181,4 +181,10 @@ SYSCALL_INTERFACE(void*, e32_get_rom_header_address);
 */
 SYSCALL_INTERFACE(void*, e32_get_rom_root_directory_address);
 
+/*! \brief Safely ncrease given value by 1 if it's positive.
+ *
+ * \returns The old value.
+*/
+SYSCALL_INTERFACE(int32, e32_safe_inc, int32 *org);
+
 #endif
