@@ -187,4 +187,13 @@ SYSCALL_INTERFACE(void*, e32_get_rom_root_directory_address);
 */
 SYSCALL_INTERFACE(int32, e32_safe_inc, int32 *org);
 
+/*! \brief Lookup for export address of a function at a specific index in a loaded library.
+ *
+ * \param lib_handle Handle to the library object.
+ * \param ord_index The index of the function we want in the library's export directory.
+ * 
+ * \returns Pointer to the function we are looking for.
+*/
+SYSCALL_INTERFACE(void*, e32_library_lookup, handle lib_handle, const int ord_index);
+
 #endif

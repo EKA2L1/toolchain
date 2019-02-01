@@ -30,3 +30,5 @@ EXPORTS
     e32_get_rom_header_address @ 29 NONAME
     e32_get_rom_root_directory_address @ 30 NONAME
     e32_safe_inc @ 31 NONAME
+    e32_library_lookup @ 32 NONAME
+
