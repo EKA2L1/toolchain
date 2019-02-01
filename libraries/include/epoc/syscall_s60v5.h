@@ -196,4 +196,26 @@ SYSCALL_INTERFACE(int32, e32_safe_inc, int32 *org);
 */
 SYSCALL_INTERFACE(void*, e32_library_lookup, handle lib_handle, const int ord_index);
 
+/*! \brief Wait for the mutex.
+ *
+ * If the mutex doesn't have the owner, the current thread will owns it, and any thread that
+ * tries to own this mutex later will be lock up, until the mutex is free.
+ * 
+ * Lock count for this mutex will increase, counting how many times the thread that owns this
+ * mutex has call wait() on it. 
+ * 
+ * \returns E32_ERR_NONE on success.
+*/
+SYSCALL_INTERFACE(int, e32_mutex_wait, handle mut_handle);
+
+/*! \brief Signal the mutex.
+ *
+ * Function must be called on the thread that currently owns this mutex.
+ * When that condition is met, the lock count will decrease, and if it reachs 0, the highest priority
+ * among threads which are waiting for this mutex, will run, but the mutex will not be held by it.
+ * 
+ * That thread must actually run to acquire the mutex.
+*/
+SYSCALL_INTERFACE(void, e32_mutex_signal, handle mut_handle);
+
 #endif
