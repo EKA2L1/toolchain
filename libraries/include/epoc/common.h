@@ -13,11 +13,13 @@ typedef long long int64;
 typedef unsigned long long uint64;
 
 typedef uint32 handle;
-typedef uint16* ucs2str;
+typedef uint16 ucs2;
 
 typedef int bool;
 
 #define E32_NULL 0
+#define E32_FALSE 0
+#define E32_TRUE 1
 
 #define E32_HANDLE_OWNER_THREAD 0
 #define E32_HANDLE_OWNER_PROCESS 1
@@ -26,7 +28,7 @@ typedef int bool;
 #define E32_API __attribute__ ((visibility ("default")))
 #endif
 
-int32 e32_get_str16_length(const ucs2str *str);
+int32 e32_get_str16_length(const ucs2 *str);
 int32 e32_get_str_length(const char *str);
 
 typedef void(*e32_thread_func)(void *data);

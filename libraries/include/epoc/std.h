@@ -5,9 +5,13 @@
 
 typedef struct e32_request_status 
 {
-    int32 status_code;
+    int32 code;
     int32 flags;
 } e32_request_status;
+
+E32_API void e32_initialize_request_status(e32_request_status *status);
+
+#define E32_REQUEST_PENDING -0x7fffffff
 
 #define E32_POLICY_TYPE_ALWAYS_FAIL 0
 #define E32_POLICY_TYPE_ALWAYS_PASS 1
@@ -39,5 +43,7 @@ typedef struct e32_security_policy
 
     e32_extended_security_policy extended_policy;
 } e32_security_policy;
+
+E32_API void e32_wait_for_request(e32_request_status *status);
 
 #endif

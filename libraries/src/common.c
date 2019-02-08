@@ -1,7 +1,7 @@
 #include <epoc/common.h>
 #include <epoc/err.h>
 
-int32 e32_get_str16_length(const ucs2str *str)
+int32 e32_get_str16_length(const ucs2 *str)
 {
     if (str == E32_NULL)
     {

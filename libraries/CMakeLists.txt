@@ -30,7 +30,9 @@ target_link_libraries(e32exe_stub PUBLIC e32common)
 add_library(e32kern
 	SHARED
 	include/epoc/kernel.h
-	src/kernel.c)
+	include/epoc/std.h
+	src/kernel.c
+	src/std.c)
 
 target_include_directories(e32kern PUBLIC include)
 target_link_libraries(e32kern PRIVATE e32common)

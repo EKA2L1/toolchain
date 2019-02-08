@@ -11,6 +11,8 @@
 
 typedef handle e32file;
 
+#define E32_FS_MSG_FILE_OPEN 30
+
 E32_API handle e32_create_file_session(const int32 max_msg_slots);
 
 /*! \brief Set the current's thread file session.
@@ -21,7 +23,7 @@ E32_API handle e32_create_file_session(const int32 max_msg_slots);
 E32_API handle e32_set_current_thread_file_session(const handle h);
 E32_API handle e32_get_current_thread_file_session();
 
-e32file e32_open_file(const ucs2str path, const int flags, const int mode);
+e32file e32_open_file(const ucs2 *path, const int flags, const int mode);
 void e32_close_file(e32file file);
 
 #endif

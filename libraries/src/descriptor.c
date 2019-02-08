@@ -63,7 +63,7 @@ int32 e32_create_descriptor(ptr_descriptor *des, const char *str, const int32 le
     return E32_ERR_NONE;
 }
 
-int32 e32_create_descriptor_const_16(ptrc_descriptor *des, const ucs2str *str, const int32 len) 
+int32 e32_create_descriptor_const_16(ptrc_descriptor *des, const ucs2 *str, const int32 len) 
 {
     int32 deslen = len;
 
@@ -75,7 +75,7 @@ int32 e32_create_descriptor_const_16(ptrc_descriptor *des, const ucs2str *str, c
     return e32_create_descriptor_const(des, (const char*)str, deslen);
 }
 
-int32 e32_create_descriptor_16(ptr_descriptor *des, const ucs2str *str, const int32 len, const int32 ini_max_length)
+int32 e32_create_descriptor_16(ptr_descriptor *des, const ucs2 *str, const int32 len, const int32 ini_max_length)
 {
     int32 error_code = e32_create_descriptor_const_16((ptrc_descriptor*)(des), str, len);
 

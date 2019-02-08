@@ -35,3 +35,8 @@ EXPORTS
     e32_mutex_signal @ 34 NONAME
     e32_process_get_id @ 35 NONAME
     e32_process_resume @ 36 NONAME
+    e32_initialize_request_status @ 37 NONAME
+    e32_wait_for_request @ 38 NONAME
+    e32_get_global_storage @ 39 NONAME
+    e32_request_signal @ 40 NONAME
+

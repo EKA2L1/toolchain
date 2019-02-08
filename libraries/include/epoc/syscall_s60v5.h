@@ -223,4 +223,10 @@ SYSCALL_INTERFACE(uint32, e32_process_get_id, handle process_handle);
 */
 SYSCALL_INTERFACE(void, e32_process_resume, handle process_handle);
 
+/*! \brief Signal current's thread request semaphore
+ *
+ * \param count The number to add to current thread's semaphore
+*/
+SYSCALL_INTERFACE(void, e32_request_signal, const int32 count);
+
 #endif

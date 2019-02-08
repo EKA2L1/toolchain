@@ -52,7 +52,7 @@ void e32_descriptor_set_length(descriptor *str, const uint32 len);
  * 
  * \returns E32_ERR_NONE if success
 */
-int32 e32_create_descriptor_const_16(ptrc_descriptor *des, const ucs2str *str, const int32 len);
+int32 e32_create_descriptor_const_16(ptrc_descriptor *des, const ucs2 *str, const int32 len);
 
 /*! \brief Construct a 16-bit modifiable descriptor from an UCS-2 string
  *
@@ -63,7 +63,7 @@ int32 e32_create_descriptor_const_16(ptrc_descriptor *des, const ucs2str *str, c
  * 
  * \returns E32_ERR_NONE if success
 */
-int32 e32_create_descriptor_16(ptr_descriptor *des, const ucs2str *str, const int32 len, const int32 ini_max_length);
+int32 e32_create_descriptor_16(ptr_descriptor *des, const ucs2 *str, const int32 len, const int32 ini_max_length);
 
 /*! \brief Construct an 8-bit not modifiable descriptor from an UCS-2 string
  *
