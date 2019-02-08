@@ -16,6 +16,7 @@ SYSCALL_V1(0x0000000C, void, e32_imb_range, const void *start, const int32 size)
 SYSCALL_V1(0x0000000E, void*, e32_library_lookup, handle lib_handle, const int ord_index);
 SYSCALL_V1(0x00000011, int, e32_mutex_wait, handle mut_handle);
 SYSCALL_V1(0x00000012, void, e32_mutex_signal, handle mut_handle);
+SYSCALL_V1(0x00000013, uint32, e32_process_get_id, handle process_handle);
 SYSCALL_V1(0x00000003, int32, e32_get_chunk_max_size, const handle chunk_handle);
 SYSCALL_V1(0x00000025, int32, e32_session_send, handle sesion_handle, const int32 opcode, 
     const void *ipc_args, const void *req_sts);

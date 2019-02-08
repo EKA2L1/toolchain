@@ -218,4 +218,8 @@ SYSCALL_INTERFACE(int, e32_mutex_wait, handle mut_handle);
 */
 SYSCALL_INTERFACE(void, e32_mutex_signal, handle mut_handle);
 
+/*! \brief Get current process's ID
+*/
+SYSCALL_INTERFACE(uint32, e32_process_get_id, handle process_handle);
+
 #endif

@@ -231,6 +231,14 @@ typedef struct e32_arm_thread_context {
     uint32 dacr;
 } e32_arm_thread_context;
 
+/*! \brief Handle to current process
+*/
+#define E32_CURRENT_PROCESS_HANDLE 0xFFFF8000
+
+/*! \brief Handle to current thread
+*/
+#define E32_CURRENT_THREAD_HANDLE  0xFFFF8001
+
 #ifdef __S60_50__
     #include <epoc/syscall_s60v5.h>
 #else

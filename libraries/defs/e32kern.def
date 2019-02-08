@@ -33,5 +33,4 @@ EXPORTS
     e32_library_lookup @ 32 NONAME
     e32_mutex_wait @ 33 NONAME
     e32_mutex_signal @ 34 NONAME
-
-
+    e32_process_get_id @ 35 NONAME
