@@ -222,4 +222,8 @@ SYSCALL_INTERFACE(void, e32_mutex_signal, handle mut_handle);
 */
 SYSCALL_INTERFACE(uint32, e32_process_get_id, handle process_handle);
 
+/*! \brief Resume a process from pause state
+*/
+SYSCALL_INTERFACE(void, e32_process_resume, handle process_handle);
+
 #endif
