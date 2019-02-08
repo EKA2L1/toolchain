@@ -231,6 +231,11 @@ typedef struct e32_arm_thread_context {
     uint32 dacr;
 } e32_arm_thread_context;
 
+typedef struct e32_thread_global_storage {
+    void   *global_storage_chunk;
+    handle  fs_session;
+} e32_thread_global_storage;
+
 /*! \brief Handle to current process
 */
 #define E32_CURRENT_PROCESS_HANDLE 0xFFFF8000
@@ -282,6 +287,10 @@ E32_API int32 e32_chunk_create(const char *chunk_name, const int32 owner_type,
  * \param context       Pointer to arm thread context.
 */
 E32_API void e32_get_arm_thread_context(const handle thread_handle, e32_arm_thread_context *context);
+
+/*! \brief Get the global storage of current thread
+*/
+E32_API e32_thread_global_storage *e32_get_global_storage();
 
 #ifdef __cplusplus
 }

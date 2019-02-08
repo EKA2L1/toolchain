@@ -1,0 +1,4 @@
+EXPORTS
+    e32_set_current_thread_file_session @ 1 NONAME
+    e32_get_current_thread_file_session @ 2 NONAME
+    e32_create_file_session @ 3 NONAME

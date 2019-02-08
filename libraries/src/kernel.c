@@ -17,7 +17,7 @@ E32_API void e32_debug_print(const char *msg, const int32 len)
   ptrc_descriptor wrapstr;
   e32_create_descriptor_const(&wrapstr, msg, len);
 
-  e32_debug_print_des((descriptor*)&wrapstr, 0);
+  e32_debug_print_des((void*)&wrapstr, 0);
 }
 
 E32_API int32 e32_session_create(const char *server_name, const int32 async_msg_slot_count,
@@ -26,7 +26,7 @@ E32_API int32 e32_session_create(const char *server_name, const int32 async_msg_
   ptrc_descriptor wrapstr;
   e32_create_descriptor_const(&wrapstr, server_name, -1);
 
-  return e32_session_create_des((descriptor*)(&wrapstr), async_msg_slot_count, (void*)(sec_policy), type);
+  return e32_session_create_des((void*)(&wrapstr), async_msg_slot_count, (void*)(sec_policy), type);
 }
 
 E32_API int32 e32_chunk_create(const char *chunk_name, const int32 owner_type,
@@ -35,7 +35,7 @@ E32_API int32 e32_chunk_create(const char *chunk_name, const int32 owner_type,
   ptrc_descriptor wrapstr;
   e32_create_descriptor_const(&wrapstr, chunk_name, -1);
 
-  return e32_chunk_create_des(owner_type, (descriptor*)(&wrapstr), (const void*)info);
+  return e32_chunk_create_des(owner_type, (void*)(&wrapstr), (const void*)info);
 }
 
 E32_API void e32_get_arm_thread_context(const handle thread_handle, e32_arm_thread_context *context) 
@@ -43,7 +43,7 @@ E32_API void e32_get_arm_thread_context(const handle thread_handle, e32_arm_thre
   ptr_descriptor wrapstr;
   e32_create_descriptor(&wrapstr, (const char*)context, 0, sizeof(e32_arm_thread_context));
 
-  return e32_get_thread_context_des(thread_handle, (descriptor*)(&wrapstr));
+  return e32_get_thread_context_des(thread_handle, (void*)(&wrapstr));
 }
 
 E32_API int32 e32_pin_ipc_arg(e32_ipc_args *args, const int32 index)
@@ -123,6 +123,10 @@ E32_API int32 e32_set_ipc_arg_string(e32_ipc_args *args, const int32 index, void
   args->args[index] = (int32)descriptor;
 
   return E32_ERR_NONE;
+}
+
+E32_API e32_thread_global_storage *e32_get_global_storage() {
+  return (e32_thread_global_storage*)(e32_get_thread_heap_allocator());
 }
 
 E32_API int32 e32_dll_main() 

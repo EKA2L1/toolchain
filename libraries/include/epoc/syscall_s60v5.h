@@ -4,9 +4,6 @@
 #include <epoc/common.h>
 #include <epoc/syscall_common.h>
 
-// Foward declare
-struct descriptor;
-
 /*! \brief Put the current thread on wait until a request signal the current 
  *         thread's signal semaphore
  *
@@ -59,7 +56,7 @@ SYSCALL_INTERFACE(uint32, e32_close_handle, const handle target_handle);
 
 /*! \brief Print an 8-bit descriptor to the debugger with specified mode
 */
-SYSCALL_INTERFACE(void, e32_debug_print_des, descriptor *des, const int mode);
+SYSCALL_INTERFACE(void, e32_debug_print_des, void *des, const int mode);
 
 /*! \brief Get the base address of the chunk in current process's memory space
  *
@@ -94,7 +91,7 @@ SYSCALL_INTERFACE(void, e32_imb_range, const void *start, const int32 size);
  * 
  * \returns < 0 is error code. Else it's the session handle.
 */
-SYSCALL_INTERFACE(int32, e32_session_create_des, descriptor *server_name, const int32 async_msg_slot_count,
+SYSCALL_INTERFACE(int32, e32_session_create_des, void *server_name, const int32 async_msg_slot_count,
     const void *sec_policy, const int32 type);
 
 /*! \brief Send a message using current thread's message slot.
@@ -134,7 +131,7 @@ SYSCALL_INTERFACE(int32, e32_session_send, handle sesion_handle, const int32 opc
  * 
  * \returns <0 is error code, else a handle to the chunk.
 */
-SYSCALL_INTERFACE(int32, e32_chunk_create_des, const int owner_type, descriptor *name,
+SYSCALL_INTERFACE(int32, e32_chunk_create_des, const int owner_type, void *name,
     const void *chunk_create_info);
 
 /*! \brief Adjust the chunk.
@@ -164,7 +161,7 @@ SYSCALL_INTERFACE(int32, e32_chunk_adjust, handle chunk_handle, const int adjust
  * \param context_des   Descriptor to write the context to.
  * 
 */
-SYSCALL_INTERFACE(void, e32_get_thread_context_des, const handle thread_handle, descriptor *context_des);
+SYSCALL_INTERFACE(void, e32_get_thread_context_des, const handle thread_handle, void *context_des);
 
 /*! \brief Delay the current thread
  *

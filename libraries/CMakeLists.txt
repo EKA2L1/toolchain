@@ -36,3 +36,13 @@ target_include_directories(e32kern PUBLIC include)
 target_link_libraries(e32kern PRIVATE e32common)
 
 e32_add_dll(e32kern 0x80001001 "${CMAKE_CURRENT_SOURCE_DIR}/defs/e32kern.def")
+
+add_library(e32fs
+	SHARED
+	include/epoc/filesystem.h
+	src/filesystem.c)
+
+target_include_directories(e32fs PUBLIC include)
+target_link_libraries(e32fs PRIVATE e32kern e32common)
+
+e32_add_dll(e32fs 0x80001002 "${CMAKE_CURRENT_SOURCE_DIR}/defs/e32fs.def")

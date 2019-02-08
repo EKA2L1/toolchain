@@ -24,12 +24,12 @@ SYSCALL_V1(0x00000025, int32, e32_session_send, handle sesion_handle, const int3
 SYSCALL_V1(0x00000040, void, e32_delay, const int microsecs, void *request_status);
 SYSCALL_V1(0x0000004D, int32, e32_session_send_sync, handle sesion_handle, const int32 opcode, 
     const void *ipc_args, const void *req_sts);
-SYSCALL_V1(0x00000056, void, e32_debug_print_des, descriptor *des, const int mode);
-SYSCALL_V1(0x0000005E, void, e32_get_thread_context_des, const handle thread_handle, descriptor *context_des);
+SYSCALL_V1(0x00000056, void, e32_debug_print_des, void *des, const int mode);
+SYSCALL_V1(0x0000005E, void, e32_get_thread_context_des, const handle thread_handle, void *context_des);
 SYSCALL_V1(0x0000006A, uint32, e32_close_handle, const handle target_handle);
-SYSCALL_V1(0x0000006B, int32, e32_chunk_create_des, const int owner_type, descriptor *name,
+SYSCALL_V1(0x0000006B, int32, e32_chunk_create_des, const int owner_type, void *name,
     const void *chunk_create_info);
 SYSCALL_V1(0x0000006C, int32, e32_chunk_adjust, handle chunk_handle, const int adjust_type, const int a1,
     const int a2);
-SYSCALL_V1(0x0000007F, int32, e32_session_create_des, descriptor *server_name, const int32 async_msg_slot_count,
+SYSCALL_V1(0x0000007F, int32, e32_session_create_des, void *server_name, const int32 async_msg_slot_count,
     const void *sec_policy, const int32 type);
