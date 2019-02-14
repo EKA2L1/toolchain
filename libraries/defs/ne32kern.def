@@ -39,4 +39,4 @@ EXPORTS
     e32_wait_for_request @ 38 NONAME
     e32_get_global_storage @ 39 NONAME
     e32_request_signal @ 40 NONAME
-
+    e32_session_send_and_wait @ 41 NONAME

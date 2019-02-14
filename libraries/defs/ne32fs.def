@@ -3,3 +3,4 @@ EXPORTS
     e32_get_current_thread_file_session @ 2 NONAME
     e32_create_file_session @ 3 NONAME
     e32_open_file @ 4 NONAME
+    e32_close_file @ 5 NONAME

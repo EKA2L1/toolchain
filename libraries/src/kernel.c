@@ -1,3 +1,10 @@
+/** 
+ * Copyright (c) 2019 EKA2L1 Project. All rights reserved.
+ * 
+ * This work is licensed under the terms of the MIT license.  
+ * For a copy, see <https://opensource.org/licenses/MIT>.
+ */
+
 #include <epoc/descriptor.h>
 #include <epoc/kernel.h>
 #include <epoc/err.h>
@@ -127,6 +134,23 @@ E32_API int32 e32_set_ipc_arg_string(e32_ipc_args *args, const int32 index, void
 
 E32_API e32_thread_global_storage *e32_get_global_storage() {
   return (e32_thread_global_storage*)(e32_get_thread_heap_allocator());
+}
+
+E32_API uint32 e32_session_send_and_wait(handle session_handle, const int32 opcode, 
+    const void *ipc_args) {
+  // Initialize a temporary status      
+  e32_request_status status;
+  e32_initialize_request_status(&status);
+
+  const uint32 err = e32_session_send_sync(session_handle, opcode, ipc_args, &status);
+
+  // If sending fail, we returns the error code
+  if (err != E32_ERR_NONE) {
+    return err;
+  }
+
+  e32_wait_for_request(&status);
+  return status.code;
 }
 
 E32_API int32 e32_dll_main() 

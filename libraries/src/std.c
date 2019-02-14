@@ -1,3 +1,10 @@
+/** 
+ * Copyright (c) 2019 EKA2L1 Project. All rights reserved.
+ * 
+ * This work is licensed under the terms of the MIT license.  
+ * For a copy, see <https://opensource.org/licenses/MIT>.
+ */
+
 #include <epoc/std.h>
 #include <epoc/kernel.h>
 

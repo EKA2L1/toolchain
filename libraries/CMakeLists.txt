@@ -8,43 +8,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/ne32.cmake)
 
 project(libraries C)
 
-# Common
-add_library(e32common
-	include/epoc/common.h
-	include/epoc/descriptor.h
-	src/common.c
-	src/descriptor.c)
+set (NE32_DEFS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/defs)
+set (NE32_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_include_directories(e32common PUBLIC include)
-
-add_library(e32dll_stub
-	src/entry.c)
-
-add_library(e32exe_stub
-	src/exe.c)
-
-target_link_libraries(e32dll_stub PUBLIC e32common)
-target_link_libraries(e32exe_stub PUBLIC e32common)
-
-# Kern
-add_library(e32kern
-	SHARED
-	include/epoc/kernel.h
-	include/epoc/std.h
-	src/kernel.c
-	src/std.c)
-
-target_include_directories(e32kern PUBLIC include)
-target_link_libraries(e32kern PRIVATE e32common)
-
-e32_add_dll(e32kern 0x80001001 "${CMAKE_CURRENT_SOURCE_DIR}/defs/e32kern.def")
-
-add_library(e32fs
-	SHARED
-	include/epoc/filesystem.h
-	src/filesystem.c)
-
-target_include_directories(e32fs PUBLIC include)
-target_link_libraries(e32fs PRIVATE e32kern e32common)
-
-e32_add_dll(e32fs 0x80001002 "${CMAKE_CURRENT_SOURCE_DIR}/defs/e32fs.def")
+add_subdirectory(src)

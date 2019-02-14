@@ -1,3 +1,10 @@
+/** 
+ * Copyright (c) 2019 EKA2L1 Project. All rights reserved.
+ * 
+ * This work is licensed under the terms of the MIT license.  
+ * For a copy, see <https://opensource.org/licenses/MIT>.
+ */
+
 #ifndef __EPOC_NGI_MEM_MGMT_H
 #define __EPOC_NGI_MEM_MGMT_H
 
@@ -12,7 +19,8 @@ typedef struct ngi_heap_base {
     uint32 gaps3[4];
 } ngi_heap_base;
 
-/*! \brief Create a heap memory region.
+/**
+ * \brief Create a heap memory region.
  *
  * This new memory can be used with the returned memory manager. 200 bytes of the new memory chunk are used
  * for storing this memory manager.

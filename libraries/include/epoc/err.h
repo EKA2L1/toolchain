@@ -1,31 +1,38 @@
+/** 
+ * Copyright (c) 2019 EKA2L1 Project. All rights reserved.
+ * 
+ * This work is licensed under the terms of the MIT license.  
+ * For a copy, see <https://opensource.org/licenses/MIT>.
+ */
+
 #ifndef __EPOC_ERR_H
 #define __EPOC_ERR_H
 
-/*! \brief No error, this indicates success */
+/**  No error, this indicates success */
 #define E32_ERR_NONE 0
 
-/*! \brief This error code defined that some operation can't find some items */
+/**  This error code defined that some operation can't find some items */
 #define E32_ERR_NOT_FOUND -1
 
-/*! \brief This error code defined a error that has no specific category */
+/**  This error code defined a error that has no specific category */
 #define E32_ERR_GENERAL -2
 
-/*! \brief This error code defined that an item is canceled */
+/**  This error code defined that an item is canceled */
 #define E32_ERR_CANCEL -3
 
-/*! \brief This error code defined that there is not enough memory left for an operation. */
+/**  This error code defined that there is not enough memory left for an operation. */
 #define E32_ERR_NO_MEMORY -4
 
-/*! \brief This error code defined that a feature is not supported. */
+/**  This error code defined that a feature is not supported. */
 #define E32_ERR_NOT_SUPPORTED -5
 
-/*! \brief This error code defined that an argument is invalid or out of range. */
+/**  This error code defined that an argument is invalid or out of range. */
 #define E32_ERR_ARGUMENT -6
 
-/*! \brief This error code indicates that a calculation has lost precision. */
+/**  This error code indicates that a calculation has lost precision. */
 #define E32_ERR_LOSS_OF_PRECISION -7
 
-/*! \brief This error code indicates that an invalid handle has been passed. */
+/**  This error code indicates that an invalid handle has been passed. */
 #define E32_ERR_BAD_HANDLE -8
 
 #define E32_ERR_OVERFLOW -9
@@ -56,7 +63,7 @@
 
 #define E32_ERR_LOCKED -22
 
-/*! \brief This error code indicates that a write operation has not fully write all the provided buffer */
+/**  This error code indicates that a write operation has not fully write all the provided buffer */
 #define E32_ERR_WRITE_NOT_FULL -23
 
 #define E32_ERR_DISMOUNTED -24
