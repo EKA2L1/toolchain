@@ -40,3 +40,4 @@ EXPORTS
     e32_get_global_storage @ 39 NONAME
     e32_request_signal @ 40 NONAME
     e32_session_send_and_wait @ 41 NONAME
+    e32_static_call_list @ 42 NONAME

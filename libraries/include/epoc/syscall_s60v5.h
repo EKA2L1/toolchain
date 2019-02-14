@@ -256,4 +256,19 @@ SYSCALL_INTERFACE(void, e32_process_resume, handle process_handle);
  */
 SYSCALL_INTERFACE(void, e32_request_signal, const int32 count);
 
+/**
+ * \brief Get a list of entry points from dependencies of current process.
+ * 
+ * The call will iterate through all dependencies of current process's codeseg, adding
+ * the dependency entry point to it, and finally add the entry point address of itself in
+ * the end of the list.
+ * 
+ * \param eps_arr   Pointer to a writeable array of pointer, which will contain entry points.
+ * \param total_eps On call, contains total number of entry point the array passed can hold.
+ *                  On return, contains total of entry point was written to the list.
+ * 
+ * \returns E32_ERR_NONE if success, else other system-related errors.
+ */
+SYSCALL_INTERFACE(int32, e32_static_call_list, int *total_eps, void **eps_arr);
+
 #endif
