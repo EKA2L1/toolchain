@@ -44,3 +44,5 @@ EXPORTS
     e32_thread_kill_des @ 43 NONAME
     e32_thread_kill @ 44 NONAME
     e32_panic @ 45 NONAME
+    e32_dll_set_tls @ 46 NONAME
+    e32_dll_tls @ 47 NONAME

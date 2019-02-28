@@ -32,6 +32,7 @@ SYSCALL_V1(0x0000003B, void, e32_request_signal, const int32 count);
 SYSCALL_V1(0x00000040, void, e32_delay, const int microsecs, void *request_status);
 SYSCALL_V1(0x0000004D, int32, e32_session_send_sync, handle sesion_handle, const int32 opcode, 
     const void *ipc_args, const void *req_sts);
+SYSCALL_V1(0x0000004E, void*, e32_dll_tls, int handle, int dll_uid);
 SYSCALL_V1(0x00000056, void, e32_debug_print_des, void *des, const int mode);
 SYSCALL_V1(0x0000005E, void, e32_get_thread_context_des, const handle thread_handle, void *context_des);
 SYSCALL_V1(0x0000006A, uint32, e32_close_handle, const handle target_handle);
@@ -41,6 +42,7 @@ SYSCALL_V1(0x0000006C, int32, e32_chunk_adjust, handle chunk_handle, const int a
     const int a2);
 SYSCALL_V1(0x00000073, int32, e32_thread_kill_des, handle thr_handle, const int32 kill_type,
     const int32 reason, void *kill_category);
+SYSCALL_V1(0x00000076, int, e32_dll_set_tls, int handle, int dll_uid, void *data);
 SYSCALL_V1(0x0000007F, int32, e32_session_create_des, void *server_name, const int32 async_msg_slot_count,
     const void *sec_policy, const int32 type);
 SYSCALL_V1(0x000000A0, int32, e32_static_call_list, int *total_eps, void **eps_arr);
