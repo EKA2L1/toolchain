@@ -278,8 +278,18 @@ typedef struct e32_thread_global_storage {
 
 #define E32_KILL_TYPE_PENDING 3
 
+#define E32_ENTRY_REASON_PROCESS_INIT 0
+
+#define E32_ENTRY_REASON_THREAD_INIT 1
+
+#define E32_ENTRY_REASON_ATTACH 2
+
+#define E32_ENTRY_REASON_DETATCH 3
+
+#define E32_ENTRY_REASON_EXCEPTION 4
+
 /**
- *  \brief Print a string to debugger.
+ * \brief Print a string to debugger.
  *
  * There is no way to tell if this succeed or failed.
  */
