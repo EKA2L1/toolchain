@@ -6,6 +6,7 @@
  */
 
 #include <epoc/common.h>
+#include <epoc/kernel.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -22,14 +23,14 @@ extern "C"
 #define __EH_FRAME_SAVE1(reg,offset)
 #endif
 
-void xxxx_call_user_handle_exception()
+void xxxx_call_user_handle_exception(void *exception_data)
 {
     // TODO:
 }
 
-void _xxxx_call_user_invariant(void *exception_dat)
+void _xxxx_call_user_invariant()
 {
-    // TODO:
+    e32_panic(0, "USER");
 }
 
 extern void e32_run_thread(bool is_not_first_thread_created, void *thread_info);

@@ -9,13 +9,14 @@ add_library(ne32common
 target_include_directories(ne32common PUBLIC ${NE32_INCLUDE_DIR})
 
 add_library(ne32dll_stub
-	entry.c)
+	dllentry.c)
 
 add_library(ne32exe_stub
-	exe.c)
+	exeentry.c
+	entries/exethread.c)
 
 target_link_libraries(ne32dll_stub PUBLIC ne32common)
-target_link_libraries(ne32exe_stub PUBLIC ne32common)
+target_link_libraries(ne32exe_stub PUBLIC ne32common ne32kern)
 
 # Kern
 add_library(ne32kern
