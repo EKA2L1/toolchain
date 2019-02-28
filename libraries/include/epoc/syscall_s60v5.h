@@ -271,4 +271,17 @@ SYSCALL_INTERFACE(void, e32_request_signal, const int32 count);
  */
 SYSCALL_INTERFACE(int32, e32_static_call_list, int *total_eps, void **eps_arr);
 
+/**
+ * \brief Kill a thread.
+ * 
+ * \param thr_handle     Handle of the thread to kill.
+ * \param exit_type      Kill type. See E32_KILL_TYPE* macros.
+ * \param reason         Kill reason code.
+ * \param kill_category  Pointer to a descriptor, contains the kill category.
+ * 
+ * \returns E32_ERR_NONE if success, else other system-related codes.
+ */
+SYSCALL_INTERFACE(int32, e32_thread_kill_des, handle thr_handle, const int32 kill_type,
+    const int32 reason, void *kill_category);
+
 #endif

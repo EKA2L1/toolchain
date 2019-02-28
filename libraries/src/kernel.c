@@ -153,7 +153,22 @@ E32_API uint32 e32_session_send_and_wait(handle session_handle, const int32 opco
   return status.code;
 }
 
-E32_API int32 e32_dll_main() 
+int32 e32_thread_kill(handle thr_handle, const int32 kill_type, const int32 reason, 
+  const char *kill_category) 
+{
+  ptrc_descriptor wrapstr;
+  e32_create_descriptor_const(&wrapstr, kill_category, -1);
+
+  return e32_thread_kill_des(thr_handle, kill_type, reason, &wrapstr);
+}
+
+int32 e32_panic(int32 reason, const char *category)
+{
+  return e32_thread_kill(E32_CURRENT_THREAD_HANDLE, E32_KILL_TYPE_PANIC, reason,
+    category);
+}
+
+E32_API int32 e32_dll_main(const int reason) 
 {
   return 0;
 }

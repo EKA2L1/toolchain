@@ -39,6 +39,8 @@ SYSCALL_V1(0x0000006B, int32, e32_chunk_create_des, const int owner_type, void *
     const void *chunk_create_info);
 SYSCALL_V1(0x0000006C, int32, e32_chunk_adjust, handle chunk_handle, const int adjust_type, const int a1,
     const int a2);
+SYSCALL_V1(0x00000073, int32, e32_thread_kill_des, handle thr_handle, const int32 kill_type,
+    const int32 reason, void *kill_category);
 SYSCALL_V1(0x0000007F, int32, e32_session_create_des, void *server_name, const int32 async_msg_slot_count,
     const void *sec_policy, const int32 type);
 SYSCALL_V1(0x000000A0, int32, e32_static_call_list, int *total_eps, void **eps_arr);

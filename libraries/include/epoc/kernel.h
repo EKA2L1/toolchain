@@ -264,6 +264,20 @@ typedef struct e32_thread_global_storage {
     #error Unsupport Symbian version
 #endif
 
+#define E32_KILL_TYPE_KILL 0
+
+/**
+ * \brief Used when we want to terminate a thread using e32_thread_kill.
+ */
+#define E32_KILL_TYPE_TERMINATE 1
+
+/**
+ * \brief Used when we want to panic a thread using e32_thread_kill.
+ */
+#define E32_KILL_TYPE_PANIC 2
+
+#define E32_KILL_TYPE_PENDING 3
+
 /**
  *  \brief Print a string to debugger.
  *
@@ -321,6 +335,32 @@ E32_API e32_thread_global_storage *e32_get_global_storage();
  */
 E32_API uint32 e32_session_send_and_wait(handle session_handle, const int32 opcode, 
     const void *ipc_args);
+
+/**
+ * \brief Kill a thread.
+ * 
+ * \param thr_handle     Handle of the thread to kill.
+ * \param exit_type      Kill type. See E32_KILL_TYPE* macros.
+ * \param reason         Kill reason code.
+ * \param kill_category  C-String describbes the kill category.
+ * 
+ * \returns E32_ERR_NONE if success, else other system-related codes.
+ */
+E32_API int32 e32_thread_kill(handle thr_handle, const int32 kill_type, const int32 reason, 
+    const char *kill_category);
+
+/**
+ * \brief Panic the current thread.
+ * 
+ * By panicing, the current thread will be killed. The panic code and category
+ * will be delivered to the kernel and also the debugger.
+ * 
+ * \brief reason   Panic reason code.
+ * \brief category Panic category string.
+ * 
+ * \returns E32_ERR_NONE if success, else other system-related codes.
+ */
+E32_API int32 e32_panic(int32 reason, const char *category);
 
 #ifdef __cplusplus
 }

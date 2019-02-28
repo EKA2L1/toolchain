@@ -41,3 +41,6 @@ EXPORTS
     e32_request_signal @ 40 NONAME
     e32_session_send_and_wait @ 41 NONAME
     e32_static_call_list @ 42 NONAME
+    e32_thread_kill_des @ 43 NONAME
+    e32_thread_kill @ 44 NONAME
+    e32_panic @ 45 NONAME
