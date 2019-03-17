@@ -32,7 +32,6 @@ macro (e32_add_dll source uid deffile)
             --uid1=0x10000079 --uid2=0x10 --uid3=${uid} --sid=${uid} 
             --version=10.0
             --dlldata
-            --uncompressed
             --output="${CMAKE_CURRENT_BINARY_DIR}/${source}.dll" 
             --libpath="${NE32_LIBPATH}\;${CMAKE_CURRENT_BINARY_DIR}\;${CMAKE_CURRENT_BINARY_DIR}\.."
             --definput="${deffile}"

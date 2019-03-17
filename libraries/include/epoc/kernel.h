@@ -13,6 +13,7 @@ extern "C" {
 #endif
 
 #include <epoc/common.h>
+#include <epoc/descriptor.h>
 #include <epoc/std.h>
 
 /** Session only for use on current thread, not usable on many thread */
@@ -246,9 +247,37 @@ typedef struct e32_arm_thread_context {
 } e32_arm_thread_context;
 
 typedef struct e32_thread_global_storage {
-    void   *global_storage_chunk;
+    handle  global_storage_chunk;
     handle  fs_session;
 } e32_thread_global_storage;
+
+typedef struct e32_thread_create_info {
+    int handle;
+    int type;
+    void *func;
+    void *func_data_ptr;
+    void *supervisor_stack;
+    int supervisor_stack_size;
+    void *user_stack;
+    int user_stack_size;
+    int initial_thread_priority;
+    ptrc_descriptor name;
+    int total_struct_size;
+} e32_thread_create_info;
+
+typedef struct e32_standard_thread_create_info {
+    e32_thread_create_info base_info;
+    void *allocator;
+    int init_heap_min;
+    int init_heap_max;
+    uint32 flags;
+} e32_standard_thread_create_info;
+
+typedef struct e32_new_standard_thread_create_info {
+    e32_thread_create_info base;
+    void *last_global_storage;
+    uint32 flags;
+} e32_new_standard_thread_create_info;
 
 /*! \brief Handle to current process
 */

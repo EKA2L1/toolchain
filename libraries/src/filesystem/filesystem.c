@@ -34,6 +34,12 @@ E32_API handle e32_set_current_thread_file_session(const handle h)
 E32_API handle e32_get_current_thread_file_session() 
 {
     e32_thread_global_storage *storage = e32_get_global_storage();
+
+    // If the file session hasn't been opened yet, open it.
+    if (storage->fs_session == 0) {
+        storage->fs_session = e32_create_file_session(-1);
+    }
+
     return storage->fs_session;
 }
 

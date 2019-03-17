@@ -40,27 +40,4 @@ int32 e32_get_str_length(const char *str);
 
 typedef void(*e32_thread_func)(void *data);
 
-typedef struct e32_thread_create_info 
-{
-    handle thread_handle;
-    int thread_type;
-    e32_thread_func func;
-    void *data;
-    uint32 *supervisor_stack;
-    uint32 *supervisor_stack_size;
-    uint32 *user_stack;
-    uint32 *user_stack_size;
-    int     priority;
-    
-    uint32  name_len;
-    uint8  *name;
-
-    int size;           ///< Size of the struct
-
-    uint32  allocator;
-    int     heap_min;
-    int     heap_max;
-    int     padding;
-} e32_thread_create_info;
-
 #endif
